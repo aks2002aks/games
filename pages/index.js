@@ -46,6 +46,15 @@ export default function Home() {
             >
               Start
             </button>
+            <button
+              onClick={() => {
+                localStorage.removeItem("token");
+                router.push("/login");
+              }}
+              className="bg-purple-900 text-white hover:bg-blue-400 font-bold py-2 px-4 mt-3 rounded text-xl"
+            >
+              Logout
+            </button>
             {IsAdmin && (
               <button
                 onClick={() => {

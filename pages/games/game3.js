@@ -19,12 +19,12 @@ function game1() {
         " I don't have a mouth, but water kills me.",
         "What am I ? ",
       ],
-      answer: "Fire",
+      answer: "FIRE",
       clue: "Focus on the properties of fire, such as how it spreads and how it interacts with other elements.",
     },
     {
       riddle: [
-        "YI am always hungry,",
+        "I am always hungry,",
         "I must always be fed.",
         "The finger I touch, will soon turn red.",
         "What am I ? ",
