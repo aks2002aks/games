@@ -1,0 +1,36 @@
+.main {
+  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  font-family: "Indie Flower", "cursive";
+}
+
+.col {
+  display: flex;
+}
+
+.cell {
+  width: 89px;
+  height: 89px;
+  border: 1px solid lightgray;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xxx-large;
+  text-transform: capitalize;
+  cursor: pointer;
+  color: white;
+  font-weight: 900;
+  border: 2px solid rgb(255, 255, 255);
+}

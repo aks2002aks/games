@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCallback } from "react";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
@@ -8,6 +8,32 @@ import { loadFireworksPreset } from "tsparticles-preset-fireworks";
 export default function allgames() {
   const [level, setlevel] = useState(0);
   const router = useRouter();
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      router.push("/");
+    }
+  }, []);
+
+  const myfun = async () => {
+    const token = localStorage.getItem("token");
+
+    let res = await fetch("/api/getLevel", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token }),
+    });
+
+    let response = await res.json();
+    console.log(response);
+    setlevel(response.Level);
+  };
+
+  useEffect(() => {
+    myfun();
+  }, []);
 
   const particlesInit = useCallback(async (engine) => {
     console.log(engine);
@@ -21,6 +47,21 @@ export default function allgames() {
 
   return (
     <section className="w-full h-screen relative">
+      <div className="container py-10 px-10 mx-0 min-w-full flex flex-col items-center text-white absolute">
+        <button
+          onClick={() => {
+            router.push("/");
+          }}
+          className="bg-purple-900 text-white hover:bg-blue-400 font-bold py-2 px-4 mt-3 rounded text-xl"
+        >
+          GO BACK
+        </button>
+        {level == 3 && (
+          <p className="text-xl py-3 font-bold">
+            Congratulation You Have Completed the Game
+          </p>
+        )}
+      </div>
       <img
         src="/bg2.jpg"
         className="object-cover w-full h-full"
@@ -37,7 +78,9 @@ export default function allgames() {
           <img
             src="/download__1_-removebg-preview.png"
             onClick={() => {
-              router.push("/games/game1");
+              if (level == 0) {
+                router.push("/games/game1");
+              }
             }}
           ></img>
         )}
@@ -50,7 +93,9 @@ export default function allgames() {
           <img
             src="/download__1_-removebg-preview.png"
             onClick={() => {
-              router.push("/games/game2");
+              if (level == 1) {
+                router.push("/games/game2");
+              }
             }}
           ></img>
         )}
@@ -63,7 +108,9 @@ export default function allgames() {
           <img
             src="/download__1_-removebg-preview.png"
             onClick={() => {
-              router.push("/games/game3");
+              if (level == 2) {
+                router.push("/games/game3");
+              }
             }}
           ></img>
         )}
