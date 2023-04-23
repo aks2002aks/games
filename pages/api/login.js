@@ -15,7 +15,7 @@ const handler = async (req, res) => {
         if (result) {
           var token = jwt.sign(
             { name: u.name, email: u.email, IsAdmin: u.IsAdmin },
-            process.env.JWT_TOKEN,
+            process.env.NEXT_PUBLIC_JWT_TOKEN,
             { expiresIn: "2d" }
           );
           res.status(200).json({ success: true, token });
